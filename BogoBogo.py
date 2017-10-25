@@ -14,11 +14,13 @@ recursion is always good and cool. To check if the list is sorted, use the follo
 
 -courtesy of u/Kingmudsy from reddit
 """
-m = int(input("how large would you like the list?/n"))
-x = [i for i in range(m)]  # create list
-shuffle(x)  # mix list
-print("list: " + str(x))
-totalComps = 0
+
+
+def bogo(l):  # standard bogo sort
+    while not all(l[i] <= l[i + 1] for i in range(len(l) - 1)):  # while the list is not in order
+        shuffle(l)                                               # shuffle list and hope its ordered
+    return l
+
 
 def bogobogo(listToSort):
     n = len(listToSort)
@@ -38,7 +40,12 @@ def bogobogo(listToSort):
             shuffle(copyOfList)
 
 
-clear = bogobogo(x)
+m = int(input("how large would you like the list?/n"))
+x = [i for i in range(m)]  # create list
+shuffle(x)  # mix list
+print("list: " + str(x))  # show shuffled list
+totalComps = 0
+clear = bogobogo(x)  # sort list
 print("ordered the list yay!")
-print(str(clear))
+print(str(clear))  # show ordered list
 print("took " + str(totalComps) + " comparisons")
